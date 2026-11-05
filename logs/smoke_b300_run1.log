@@ -1,0 +1,25 @@
+NVIDIA B300 SXM6 AC, 580.173.02, 10.3
+[PASS] nvidia-smi reports a GPU: ['sm_103']
+[PASS] ptxas is available: /usr/local/cuda/bin/ptxas
+[PASS] all GPUs are sm_103: ['sm_103']
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793355919.047769     493 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1793355919.195619     493 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 AMX_FP16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793355920.428797     493 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+W0000 00:00:1793355921.153110     493 gpu_device.cc:2455] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 10.3a. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+TensorFlow 2.23.0-dev0+selfbuilt, Keras 3.16.0.dev2026103003, numpy 2.5.4
+Built for CUDA None, cuDNN None
+[PASS] wheel is a CUDA build
+[PASS] TensorFlow sees a GPU: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+W0000 00:00:1793355921.242460     493 gpu_device.cc:2455] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 10.3a. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+I0000 00:00:1793355921.511124     493 gpu_device.cc:2038] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 271687 MB memory:  -> device: 0, name: NVIDIA B300 SXM6 AC, pci bus id: 0000:73:00.0, compute capability: 10.3a
+external/eigen_archive/unsupported/Eigen/CXX11/../../../contrib/Eigen/src/Tensor/TensorDeviceGpu.h:156: gpuGetDeviceProperties(&device_properties[i], i): cudaErrorSharedObjectSymbolNotFound: shared object symbol not found
+[FAIL] worker finished cleanly: exit code -6
+[PASS] no PTX or GPU runtime errors in log: 0 matching lines
+[FAIL] XLA generated PTX: 0 files
+
+6/8 checks passed
+  FAILED: worker finished cleanly
+  FAILED: XLA generated PTX

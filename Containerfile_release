@@ -1,0 +1,26 @@
+# TensorFlow 2.23 dev for NVIDIA B300, built on CUDA 13.0. Runs as a non-root user with no
+# password, no sudo and no SSH. Start it without a command to run the smoke test.
+FROM nvcr.io/nvidia/cuda-dl-base:25.08-cuda13.0-devel-ubuntu24.04
+
+LABEL org.opencontainers.image.title="tensorflow-b300" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.description="TensorFlow 2.23 dev with CUDA 13 for NVIDIA B300 (sm_103)"
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV USER_UID=2002
+ENV USER_GID=$USER_UID
+
+RUN apt update && apt install -y python3.12 python3.12-venv python3.12-dev python3-pip && rm -rf /var/lib/apt/lists/*
+
+COPY tensorflow/tensorflow-2.23.0.dev0+selfbuilt-cp312-cp312-linux_x86_64.whl /tmp/
+RUN python3 -m venv /venv && /venv/bin/pip install --no-cache-dir /tmp/tensorflow-*.whl && rm /tmp/tensorflow-*.whl
+COPY gpu_smoke_test.py /gpu_smoke_test.py
+
+# useradd leaves the password locked. HOME stays writable for jobs started with another UID.
+RUN groupadd -g $USER_GID tfuser && useradd -m -u $USER_UID -g $USER_GID -s /bin/bash tfuser && chmod 1777 /home/tfuser
+
+ENV PATH=/venv/bin:$PATH
+ENV HOME=/home/tfuser
+USER $USER_UID:$USER_GID
+WORKDIR /home/tfuser
+CMD ["python", "/gpu_smoke_test.py"]

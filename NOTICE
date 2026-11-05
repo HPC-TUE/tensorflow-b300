@@ -1,0 +1,18 @@
+tensorflow-b300
+
+This is an unofficial build of TensorFlow for NVIDIA B300 GPUs. It is not affiliated with,
+endorsed by or supported by Google, the TensorFlow project or NVIDIA.
+
+The build scripts, Containerfiles and smoke test in this repository are licensed under the
+Apache License 2.0 (see LICENSE).
+
+TensorFlow is licensed under the Apache License 2.0. The wheel published on the Releases page
+is built from unmodified TensorFlow source at commit 5693b4a7feaff77f23af8a8218cd6e8e7aa2a7ca
+and keeps TensorFlow's own LICENSE and THIRD_PARTY_NOTICES.txt.
+
+The wheel does not contain NVIDIA CUDA, cuDNN or NCCL libraries. They are installed separately,
+either from NVIDIA's pip packages or from the NVIDIA base image, under NVIDIA's own license terms.
+
+The Containerfiles build on nvcr.io/nvidia/cuda-dl-base, which is pulled directly from NVIDIA's
+NGC registry by whoever builds the image and is subject to NVIDIA's license for that image.
+No NVIDIA container image is redistributed by this repository.
